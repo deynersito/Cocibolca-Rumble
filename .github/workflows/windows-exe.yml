@@ -38,6 +38,8 @@ jobs:
           game = games[0].read_text(encoding="utf-8")
           game = game.replace("str(ROOT/'combate-024.png')", "os.environ.get('COCIBOLCA_SMOKE_IMAGE',str(ROOT/'combate-024.png'))")
           games[0].write_text(game, encoding="utf-8")
+          updates = root / "updates.py"
+          updates.write_text(updates.read_text(encoding="utf-8").replace("Cocibolca-Rumble-PC-", "Cocibolca-Rumble-(?:PC|Windows)-"), encoding="utf-8")
           pathlib.Path("game-path.txt").write_text(str(root.resolve()), encoding="utf-8")
           from PIL import Image, ImageDraw, ImageFont
           icon = Image.new("RGBA", (256,256), (0,0,0,0))
